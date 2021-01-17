@@ -3,3 +3,8 @@
 @import 'tailwindcss/components';
 
 @import 'tailwindcss/utilities';
+
+.icon {
+    width: 20px;
+    margin-right: 5px;
+}
