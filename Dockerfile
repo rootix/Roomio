@@ -1,7 +1,10 @@
 # build environment
+ARG DB_HOST=
 FROM node:15.5.1-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
+ENV NODE_ENV production
+ENV REACT_APP_INFLUX_DB_HOST=$DB_HOST
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --silent
