@@ -10,7 +10,7 @@
         "ecmaVersion": 2018
     },
     "rules": {
-        "no-console": "on",
+        "no-console": "warn",
         "strict": ["error", "global"],
         "curly": "warn"
     }
