@@ -1,6 +1,6 @@
 # build environment
-ARG DB_HOST=
 FROM node:15.5.1-alpine as build
+ARG DB_HOST
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV NODE_ENV production
@@ -11,6 +11,7 @@ RUN npm ci --silent
 RUN npm install react-scripts@4.0.1 -g --silent
 COPY . ./
 RUN npm run build
+RUN chmod -R o+rx /app/build
 
 # production environment
 FROM nginx:stable-alpine
