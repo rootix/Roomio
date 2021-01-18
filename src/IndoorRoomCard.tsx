@@ -12,7 +12,7 @@ function IndoorRoomCard(props: { data: RoomData }) {
             <div className="flex">
                 <h2 className="flex-grow text-xl font-bold">{data.name}</h2>
                 <div className="flex flex-none items-center">
-                    <TemperatureIcon className="icon" />
+                    <TemperatureIcon className="icon" width="20" height="20" />
                     <span className="text-xl font-semibold">
                         {data.temperature} &#8451;
                     </span>
@@ -20,19 +20,23 @@ function IndoorRoomCard(props: { data: RoomData }) {
             </div>
             <div className="flex mt-8">
                 <div className="flex flex-grow">
-                    <HumidityIcon className="icon" />
+                    <HumidityIcon className="icon" width="20" height="20" />
                     <span className="text-sm">{data.humidity} %</span>
                 </div>
 
                 <div className="flex">
                     <div className="flex">
-                        <ArrowDownIcon className="icon" />
+                        <ArrowDownIcon
+                            className="icon"
+                            width="20"
+                            height="20"
+                        />
                         <span className="text-sm">
                             {data.minTemperature} &#8451;
                         </span>
                     </div>
                     <div className="flex">
-                        <ArrowUpIcon className="icon" />
+                        <ArrowUpIcon className="icon" width="20" height="20" />
                         <span className="text-sm">
                             {data.maxTemperature} &#8451;
                         </span>
