@@ -48,7 +48,7 @@ function CurrentWeather(props: { roomData: RoomData }) {
         }
     };
 
-    return <div>{weatherIcon()}</div>;
+    return <div className="self-center">{weatherIcon()}</div>;
 }
 
 export default CurrentWeather;

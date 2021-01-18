@@ -34,27 +34,25 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                     </div>
 
                     <div className="flex">
-                        <div className="flex h-full">
-                            <div className="flex">
-                                <ArrowDownIcon
-                                    className="icon"
-                                    width="20"
-                                    height="20"
-                                />
-                                <span className="text-sm">
-                                    {data.minTemperature} &#8451;
-                                </span>
-                            </div>
-                            <div className="flex">
-                                <ArrowUpIcon
-                                    className="icon"
-                                    width="20"
-                                    height="20"
-                                />
-                                <span className="text-sm">
-                                    {data.maxTemperature} &#8451;
-                                </span>
-                            </div>
+                        <div className="flex">
+                            <ArrowDownIcon
+                                className="icon"
+                                width="20"
+                                height="20"
+                            />
+                            <span className="text-sm">
+                                {data.minTemperature} &#8451;
+                            </span>
+                        </div>
+                        <div className="flex">
+                            <ArrowUpIcon
+                                className="icon"
+                                width="20"
+                                height="20"
+                            />
+                            <span className="text-sm">
+                                {data.maxTemperature} &#8451;
+                            </span>
                         </div>
                     </div>
                 </div>
