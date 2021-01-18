@@ -17,7 +17,7 @@ function LastUpdate(props: { date: Date }) {
         return () => clearInterval(interval);
     });
 
-    return <div>{lastUpdated}</div>;
+    return <span>Letzte Aktualisierung: {lastUpdated}</span>;
 }
 
 export default LastUpdate;

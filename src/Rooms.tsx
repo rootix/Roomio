@@ -3,11 +3,12 @@ import { RoomData, RoomDataResponse } from './types';
 import LastUpdate from './LastUpdate';
 import IndoorRoomCard from './IndoorRoomCard';
 import OutdoorRoomCard from './OutdoorRoomCard';
+import PullToRefresh from 'rmc-pull-to-refresh';
 
 function Rooms() {
     const roundNumber = (value: number) => Math.round(value * 10) / 10;
 
-    const { isLoading, data } = useQuery('roomData', () =>
+    const { isLoading, data, refetch } = useQuery('roomData', () =>
         fetch(
             `${process.env.REACT_APP_INFLUX_DB_HOST}/query?db=ruuvi&q=SELECT%20MIN(temperature),%20MAX(temperature),%20LAST(temperature),%20LAST(humidity),%20LAST(pressure)%20FROM%20ruuvi_measurements%20WHERE%20time%20>%20now()%20-%201d%20GROUP BY%20"name"`
         )
@@ -38,7 +39,19 @@ function Rooms() {
     );
 
     return (
-        <div>
+        <PullToRefresh
+            onRefresh={refetch}
+            distanceToRefresh={50}
+            indicator={{
+                activate: 'Loslassen',
+                release: 'Aktualisierung ...',
+                deactivate: (data ?
+                        <LastUpdate date={data.fetchDate} />
+                    : 'Ziehen'
+                ),
+                finish: ' ',
+            }}
+        >
             {isLoading && (
                 <div className="flex justify-center mb-4 text-sm">
                     Aktualisierung ...
@@ -54,13 +67,7 @@ function Rooms() {
                         )
                     )}
             </div>
-            {data && (
-                <div className="flex mt-4 text-sm">
-                    Letzte Aktualisierung:&nbsp;
-                    <LastUpdate date={data.fetchDate} />
-                </div>
-            )}
-        </div>
+        </PullToRefresh>
     );
 }
 
