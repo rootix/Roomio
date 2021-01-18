@@ -555,6 +555,11 @@ video {
 }
 
 @media (prefers-color-scheme: dark) {
+  .dark\:bg-black {
+    --tw-bg-opacity: 1;
+    background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  }
+
   .dark\:bg-gray-700 {
     --tw-bg-opacity: 1;
     background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
@@ -712,7 +717,8 @@ video {
 
 .icon {
   width: 20px;
-  margin-right: 5px;
+  max-height: 20px;
+  margin-right: 3px;
 }
 
 @media (min-width: 640px) {

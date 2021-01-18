@@ -22,9 +22,9 @@ function Rooms() {
                                 room.tags['name'] === 'Aussen'
                                     ? 'Outdoor'
                                     : 'Indoor',
-                            temperature: roundNumber(room.values[0][1]),
-                            minTemperature: roundNumber(room.values[0][2]),
-                            maxTemperature: roundNumber(room.values[0][3]),
+                            temperature: roundNumber(room.values[0][3]),
+                            minTemperature: roundNumber(room.values[0][1]),
+                            maxTemperature: roundNumber(room.values[0][2]),
                             humidity: roundNumber(room.values[0][4]),
                             pressure: roundNumber(room.values[0][5]),
                         };
