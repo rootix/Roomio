@@ -6,8 +6,17 @@ I build it for my own purpose and it supports only this Database and the data st
 
 ## Local development
 
-The InfluxDB Host has to be set trought the environment variable `REACT_APP_INFLUX_DB_HOST` (OS or local .env file)
+The following parameters have to be set trought environment variables (OS or local .env file):
+
+-   `REACT_APP_INFLUX_DB_HOST`: The Influx DB
+-   `REACT_APP_LOCATION_ELEVATION`: The elevation of the measurement location
+-   `REACT_APP_LOCATION_LATITUDE`: The latitude of the measurement location
+-   `REACT_APP_LOCATION_LONGITUDE`: The longitude of the measurement location
 
 ## Build Docker image
 
-Within the root folder run: `docker build -f Dockerfile --build-arg DB_HOST=<protocol://host:port> -t roomio:latest .`
+Within the root folder run: `docker build -f Dockerfile --build-arg DB_HOST=<protocol://host:port> --build-arg LOCATION_ELEVATION=<elevation> --build-arg LOCATION_LATITUDE=<latitude> --build-arg LOCATION_LONGITUDE=<longitude> -t roomio:latest .`
+
+## Credits
+
+Icons made by [Those Icons](https://www.flaticon.com/authors/those-icons) from [www.flaticon.com](https://www.flaticon.com/)
