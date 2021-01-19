@@ -80,7 +80,7 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                                 height="20"
                             />
                             <span className="text-sm">
-                                {data.minTemperature} &#8451;
+                                {data.maxTemperature} &#8451;
                             </span>
                         </div>
                         <div className="flex justify-between mt-0 sm:mt-0">
@@ -90,7 +90,7 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                                 height="20"
                             />
                             <span className="text-sm">
-                                {data.maxTemperature} &#8451;
+                                {data.minTemperature} &#8451;
                             </span>
                         </div>
                     </div>
