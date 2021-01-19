@@ -6,11 +6,18 @@ import { ReactComponent as SunnyIcon } from './icons/sun.svg';
 import { ReactComponent as RainyIcon } from './icons/rain.svg';
 import { ReactComponent as StormyIcon } from './icons/wind.svg';
 import { ReactComponent as MoonIcon } from './icons/moon.svg';
+import { isWithinInterval } from 'date-fns';
 
-function CurrentWeather(props: { roomData: RoomData }) {
+function CurrentWeather(props: {
+    roomData: RoomData;
+    sunrise: Date;
+    sunset: Date;
+}) {
     function calculatePressureOnSeaLevel() {
         const localPressure = props.roomData.pressure / 100;
-        const metersOverSeaLevel = 551;
+        const metersOverSeaLevel = parseInt(
+            process.env.REACT_APP_LOCATION_ELEVATION ?? '0'
+        );
         const temperatureGradient = 0.0065;
         const temperatureOnSeaLevelInCelvin =
             props.roomData.temperature +
@@ -29,12 +36,16 @@ function CurrentWeather(props: { roomData: RoomData }) {
     }
 
     const weatherIcon = () => {
-        if (new Date().getHours() >= 20) {
+        if (
+            !isWithinInterval(new Date(), {
+                start: props.sunrise,
+                end: props.sunset,
+            })
+        ) {
             return <MoonIcon width="75" height="75" />;
         }
 
         const pressure = calculatePressureOnSeaLevel();
-
         if (pressure >= 1040) {
             return <VerySunnyIcon width="75" height="75" />;
         } else if (pressure >= 1020) {
@@ -48,7 +59,7 @@ function CurrentWeather(props: { roomData: RoomData }) {
         }
     };
 
-    return <div className="self-center">{weatherIcon()}</div>;
+    return <div>{weatherIcon()}</div>;
 }
 
 export default CurrentWeather;
