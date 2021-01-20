@@ -1,9 +1,11 @@
 import { useQuery } from 'react-query';
 import { RoomData, RoomDataResponse } from './types';
-import LastUpdate from './LastUpdate';
 import IndoorRoomCard from './IndoorRoomCard';
+
 import OutdoorRoomCard from './OutdoorRoomCard';
-import PullToRefresh from 'rmc-pull-to-refresh';
+import PullToRefresh from 'pulltorefreshjs';
+import { useEffect } from 'react';
+import LastUpdate from './LastUpdate';
 
 function Rooms() {
     const roundNumber = (value: number) => Math.round(value * 10) / 10;
@@ -38,21 +40,20 @@ function Rooms() {
             })
     );
 
+    useEffect(() => {
+        PullToRefresh.init({
+            mainElement: 'body',
+            instructionsPullToRefresh: 'Ziehen zum aktualisieren',
+            instructionsReleaseToRefresh: 'Loslassen',
+            instructionsRefreshing: 'Aktualisierung',
+            onRefresh() {
+                return refetch();
+            },
+        });
+    }, PullToRefresh.destroyAll());
+
     return (
-        <PullToRefresh
-            onRefresh={refetch}
-            distanceToRefresh={50}
-            indicator={{
-                activate: 'Loslassen',
-                release: 'Aktualisierung ...',
-                deactivate: data ? (
-                    <LastUpdate date={data.fetchDate} />
-                ) : (
-                    'Ziehen'
-                ),
-                finish: ' ',
-            }}
-        >
+        <div>
             {isLoading && (
                 <div className="flex justify-center mb-4 text-sm">
                     Aktualisierung ...
@@ -68,7 +69,13 @@ function Rooms() {
                         )
                     )}
             </div>
-        </PullToRefresh>
+            {data && (
+                <div className="flex justify-center text-sm mt-4">
+                    Letzte Aktualisierung:&nbsp;
+                    <LastUpdate date={data.fetchDate} />
+                </div>
+            )}
+        </div>
     );
 }
 

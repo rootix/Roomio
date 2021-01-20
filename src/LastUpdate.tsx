@@ -6,18 +6,19 @@ function LastUpdate(props: { date: Date }) {
     const [lastUpdated, setLastUpdated] = useState('-');
 
     useEffect(() => {
-        const updateDate = () => setLastUpdated(
-            formatDistance(new Date(), props.date, {
-                includeSeconds: true,
-                locale: de,
-            })
-        );
+        const updateDate = () =>
+            setLastUpdated(
+                formatDistance(new Date(), props.date, {
+                    includeSeconds: true,
+                    locale: de,
+                })
+            );
         updateDate();
         const interval = setInterval(() => updateDate(), 1000);
         return () => clearInterval(interval);
     });
 
-    return <span>Letzte Aktualisierung: {lastUpdated}</span>;
+    return <span>{lastUpdated}</span>;
 }
 
 export default LastUpdate;
