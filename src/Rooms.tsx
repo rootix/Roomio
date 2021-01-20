@@ -41,7 +41,7 @@ function Rooms() {
     );
 
     useEffect(() => {
-        PullToRefresh.init({
+        const pullToRefresh = PullToRefresh.init({
             mainElement: 'body',
             instructionsPullToRefresh: 'Ziehen zum aktualisieren',
             instructionsReleaseToRefresh: 'Loslassen',
@@ -50,7 +50,9 @@ function Rooms() {
                 return refetch();
             },
         });
-    }, PullToRefresh.destroyAll());
+
+        return pullToRefresh.destroy;
+    });
 
     return (
         <div>
