@@ -73,7 +73,7 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                     </div>
 
                     <div className="flex flex-col sm:flex-row">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between sm:order-2">
                             <ArrowUpIcon
                                 className="icon"
                                 width="20"
@@ -83,7 +83,7 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                                 {data.maxTemperature} &#8451;
                             </span>
                         </div>
-                        <div className="flex justify-between mt-0 sm:mt-0">
+                        <div className="flex justify-between mt-0 sm:mt-0 sm:order-1">
                             <ArrowDownIcon
                                 className="icon"
                                 width="20"

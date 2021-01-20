@@ -45,9 +45,10 @@ function Rooms() {
             indicator={{
                 activate: 'Loslassen',
                 release: 'Aktualisierung ...',
-                deactivate: (data ?
-                        <LastUpdate date={data.fetchDate} />
-                    : 'Ziehen'
+                deactivate: data ? (
+                    <LastUpdate date={data.fetchDate} />
+                ) : (
+                    'Ziehen'
                 ),
                 finish: ' ',
             }}
@@ -57,7 +58,7 @@ function Rooms() {
                     Aktualisierung ...
                 </div>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {data &&
                     data.rooms.map((room: RoomData) =>
                         room.type == 'Indoor' ? (
