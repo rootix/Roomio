@@ -8,31 +8,12 @@
     margin-right: 3px;
 }
 
-.rmc-pull-to-refresh-content {
-    @apply text-xs;
-    transform-origin: left top 0px;
-    margin-bottom: 4px;
-}
-
-.rmc-pull-to-refresh-content-wrapper {
-    overflow: hidden;
-}
-
-.rmc-pull-to-refresh-transition {
-    transition: transform 0.3s;
-}
-
-.rmc-pull-to-refresh-indicator {
-    color: grey;
-    text-align: center;
-    height: 25px;
-    line-height: 25px;
-}
-
-.rmc-pull-to-refresh-down .rmc-pull-to-refresh-indicator {
-    margin-top: -25px;
-}
-
-.rmc-pull-to-refresh-up .rmc-pull-to-refresh-indicator {
-    margin-bottom: -25px;
+@media (prefers-color-scheme: dark) {
+    body .ptr--ptr {
+        box-shadow: inset 0 -3px 5px rgb(255, 255, 255, 0.12);
+    }
+    .ptr--ptr .ptr--text,
+    .ptr--ptr .ptr--icon {
+        @apply text-gray-500;
+    }
 }
