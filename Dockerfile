@@ -1,5 +1,5 @@
 # build environment
-FROM node:15.5.1-alpine as build
+FROM node:18.16.0-alpine as build
 ARG DB_HOST
 ARG LOCATION_ELEVATION
 ARG LOCATION_LATITUDE
@@ -14,7 +14,7 @@ ENV REACT_APP_LOCATION_LONGITUDE=$LOCATION_LONGITUDE
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --silent
-RUN npm install react-scripts@4.0.1 -g --silent
+RUN npm install react-scripts@5.0.1 -g --silent
 COPY . ./
 RUN npm run build
 RUN chmod -R o+rx /app/build
