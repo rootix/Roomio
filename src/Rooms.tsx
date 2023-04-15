@@ -1,3 +1,4 @@
+import React from 'react';
 import { useQuery } from 'react-query';
 import { RoomData, RoomDataResponse } from './types';
 import IndoorRoomCard from './IndoorRoomCard';
