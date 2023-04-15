@@ -1,5 +1,3 @@
-import { RoomData } from './types';
-
 import { ReactComponent as CloudyIcon } from './icons/cloudy.svg';
 import { ReactComponent as VerySunnyIcon } from './icons/sun-hot.svg';
 import { ReactComponent as SunnyIcon } from './icons/sun.svg';
@@ -7,6 +5,8 @@ import { ReactComponent as RainyIcon } from './icons/rain.svg';
 import { ReactComponent as StormyIcon } from './icons/wind.svg';
 import { ReactComponent as MoonIcon } from './icons/moon.svg';
 import { isWithinInterval } from 'date-fns';
+import { RoomData } from './types';
+import React from 'react';
 
 function CurrentWeather(props: {
     roomData: RoomData;
