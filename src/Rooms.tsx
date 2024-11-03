@@ -1,6 +1,5 @@
-import React from 'react';
 import { useQuery } from 'react-query';
-import { RoomData, RoomDataResponse } from './types';
+import {InfluxQueryResponse, RoomData, RoomDataResponse} from './types';
 import IndoorRoomCard from './IndoorRoomCard';
 
 import OutdoorRoomCard from './OutdoorRoomCard';
@@ -13,13 +12,13 @@ function Rooms() {
 
     const { isLoading, data, refetch } = useQuery('roomData', () =>
         fetch(
-            `${process.env.REACT_APP_INFLUX_DB_HOST}/query?db=ruuvi&q=SELECT%20MIN(temperature),%20MAX(temperature),%20LAST(temperature),%20LAST(humidity),%20LAST(pressure)%20FROM%20ruuvi_measurements%20WHERE%20time%20>%20now()%20-%201d%20GROUP BY%20"name"`
+            `${import.meta.env.VITE_INFLUX_DB_HOST}/query?db=ruuvi&q=SELECT%20MIN(temperature),%20MAX(temperature),%20LAST(temperature),%20LAST(humidity),%20LAST(pressure)%20FROM%20ruuvi_measurements%20WHERE%20time%20>%20now()%20-%201d%20GROUP BY%20"name"`
         )
             .then((res) => res.json())
-            .then((res) => {
+            .then((res: InfluxQueryResponse) => {
                 const roomDataResponse: RoomDataResponse = {
                     fetchDate: new Date(),
-                    rooms: res.results[0].series.map((room: any) => {
+                    rooms: res.results[0].series.map((room) => {
                         const parsedRoomData: RoomData = {
                             name: room.tags['name'],
                             type:

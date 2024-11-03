@@ -1,10 +1,9 @@
-import React from 'react';
-import { ReactComponent as TemperatureIcon } from './icons/temperature.svg';
-import { ReactComponent as ArrowUpIcon } from './icons/arrowUp.svg';
-import { ReactComponent as ArrowDownIcon } from './icons/arrowDown.svg';
-import { ReactComponent as HumidityIcon } from './icons/humidity.svg';
-import { ReactComponent as SunriseIcon } from './icons/sunrise.svg';
-import { ReactComponent as SunsetIcon } from './icons/sunset.svg';
+import TemperatureIcon from './icons/temperature.svg?react';
+import ArrowUpIcon from './icons/arrowUp.svg?react';
+import ArrowDownIcon from './icons/arrowDown.svg?react';
+import HumidityIcon from './icons/humidity.svg?react';
+import SunriseIcon from './icons/sunrise.svg?react';
+import SunsetIcon from './icons/sunset.svg?react';
 import CurrentWeather from './CurrentWeather';
 import { RoomData } from './types';
 import SunCalc from 'suncalc';
@@ -15,8 +14,8 @@ function OutdoorRoomCard(props: { data: RoomData }) {
 
     const sunTimes = SunCalc.getTimes(
         new Date(),
-        process.env.REACT_APP_LOCATION_LATITUDE,
-        process.env.REACT_APP_LOCATION_LONGITUDE
+        import.meta.env.VITE_LOCATION_LATITUDE,
+        import.meta.env.VITE_LOCATION_LONGITUDE
     );
 
     return (
@@ -26,7 +25,7 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                     <h2 className="text-xl font-bold">{data.name}</h2>
                     <div className="flex">
                         <HumidityIcon className="icon" width="20" height="20" />
-                        <span className="text-sm">{data.humidity} %</span>
+                        <span className="text-sm ml-2">{data.humidity} %</span>
                     </div>
                 </div>
 
@@ -43,17 +42,17 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                                 width="20"
                                 height="20"
                             />
-                            <span className="text-sm">
+                            <span className="text-sm ml-2">
                                 {format(sunTimes.sunrise, 'kk:mm')}
                             </span>
                         </div>
-                        <div className="flex ml-2">
+                        <div className="flex ml-3">
                             <SunsetIcon
                                 className="icon"
                                 width="20"
                                 height="20"
                             />
-                            <span className="text-sm">
+                            <span className="text-sm ml-2">
                                 {format(sunTimes.sunset, 'kk:mm')}
                             </span>
                         </div>
@@ -67,29 +66,29 @@ function OutdoorRoomCard(props: { data: RoomData }) {
                             width="20"
                             height="20"
                         />
-                        <span className="text-xl font-semibold">
+                        <span className="text-xl font-semibold ml-2">
                             {data.temperature} &#8451;
                         </span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row">
-                        <div className="flex justify-between sm:order-2">
+                        <div className="ml-2 flex justify-between sm:order-2">
                             <ArrowUpIcon
                                 className="icon"
                                 width="20"
                                 height="20"
                             />
-                            <span className="text-sm">
+                            <span className="text-sm ml-2">
                                 {data.maxTemperature} &#8451;
                             </span>
                         </div>
-                        <div className="flex justify-between mt-0 sm:mt-0 sm:order-1">
+                        <div className="ml-2 flex justify-between mt-0 sm:mt-0 sm:order-1">
                             <ArrowDownIcon
                                 className="icon"
                                 width="20"
                                 height="20"
                             />
-                            <span className="text-sm">
+                            <span className="text-sm ml-2">
                                 {data.minTemperature} &#8451;
                             </span>
                         </div>

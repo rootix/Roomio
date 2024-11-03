@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { formatDistance } from 'date-fns';
 import { de } from 'date-fns/locale';

@@ -1,26 +1,24 @@
 # build environment
-FROM node:18.16.0-alpine as build
+FROM node:20.18.0-alpine AS build
 ARG DB_HOST
 ARG LOCATION_ELEVATION
 ARG LOCATION_LATITUDE
 ARG LOCATION_LONGITUDE
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-ENV NODE_ENV production
-ENV REACT_APP_INFLUX_DB_HOST=$DB_HOST
-ENV REACT_APP_LOCATION_ELEVATION=$LOCATION_ELEVATION
-ENV REACT_APP_LOCATION_LATITUDE=$LOCATION_LATITUDE
-ENV REACT_APP_LOCATION_LONGITUDE=$LOCATION_LONGITUDE
+ENV VITE_INFLUX_DB_HOST=$DB_HOST
+ENV VITE_LOCATION_ELEVATION=$LOCATION_ELEVATION
+ENV VITE_LOCATION_LATITUDE=$LOCATION_LATITUDE
+ENV VITE_LOCATION_LONGITUDE=$LOCATION_LONGITUDE
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --silent
-RUN npm install react-scripts@5.0.1 -g --silent
 COPY . ./
+ENV NODE_ENV=production
 RUN npm run build
-RUN chmod -R o+rx /app/build
+RUN chmod -R o+rx /app/dist
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

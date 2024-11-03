@@ -1,12 +1,11 @@
-import { ReactComponent as CloudyIcon } from './icons/cloudy.svg';
-import { ReactComponent as VerySunnyIcon } from './icons/sun-hot.svg';
-import { ReactComponent as SunnyIcon } from './icons/sun.svg';
-import { ReactComponent as RainyIcon } from './icons/rain.svg';
-import { ReactComponent as StormyIcon } from './icons/wind.svg';
-import { ReactComponent as MoonIcon } from './icons/moon.svg';
+import CloudyIcon from './icons/cloudy.svg?react';
+import VerySunnyIcon from './icons/sun-hot.svg?react';
+import SunnyIcon from './icons/sun.svg?react';
+import RainyIcon from './icons/rain.svg?react';
+import StormyIcon from './icons/wind.svg?react';
+import MoonIcon from './icons/moon.svg?react';
 import { isWithinInterval } from 'date-fns';
 import { RoomData } from './types';
-import React from 'react';
 
 function CurrentWeather(props: {
     roomData: RoomData;
@@ -16,7 +15,7 @@ function CurrentWeather(props: {
     function calculatePressureOnSeaLevel() {
         const localPressure = props.roomData.pressure / 100;
         const metersOverSeaLevel = parseInt(
-            process.env.REACT_APP_LOCATION_ELEVATION ?? '0'
+            import.meta.env.VITE_LOCATION_ELEVATION ?? '0'
         );
         const temperatureGradient = 0.0065;
         const temperatureOnSeaLevelInCelvin =

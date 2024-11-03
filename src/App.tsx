@@ -1,4 +1,3 @@
-import React from 'react';
 import Rooms from './Rooms';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css';
