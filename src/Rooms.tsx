@@ -42,7 +42,7 @@ function Rooms() {
 
     useEffect(() => {
         const pullToRefresh = PullToRefresh.init({
-            mainElement: 'body',
+            mainElement: '#root',
             instructionsPullToRefresh: 'Ziehen zum aktualisieren',
             instructionsReleaseToRefresh: 'Loslassen',
             instructionsRefreshing: 'Aktualisierung',

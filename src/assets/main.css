@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dark\:bg-black .ptr--ptr {
+    box-shadow: inset 0 -3px 5px rgba(255, 255, 255, 0.12)
+}
+
+.dark\:bg-black .ptr--icon {
+    @apply text-gray-500;
+}
+
+.dark\:bg-black .ptr--text {
+    @apply text-gray-500;
+}
