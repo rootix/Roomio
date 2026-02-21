@@ -19,6 +19,7 @@ export interface InfluxQueryResponse {
 
 export interface InfluxQueryResult {
     statement_id: number;
+    error?: string;
     series: InfluxRoomDataResponse[];
 }
 
