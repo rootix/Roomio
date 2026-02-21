@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import {InfluxQueryResponse, RoomData, RoomDataResponse} from './types';
 import IndoorRoomCard from './IndoorRoomCard';
 
@@ -10,7 +10,7 @@ import LastUpdate from './LastUpdate';
 function Rooms() {
     const roundNumber = (value: number) => Math.round(value * 10) / 10;
 
-    const { isLoading, data, refetch } = useQuery('roomData', () =>
+    const { isLoading, data, refetch } = useQuery({ queryKey: ['roomData'], queryFn: () =>
         fetch(
             `${import.meta.env.VITE_INFLUX_DB_HOST}/query?db=ruuvi&q=SELECT%20MIN(temperature),%20MAX(temperature),%20LAST(temperature),%20LAST(humidity),%20LAST(pressure)%20FROM%20ruuvi_measurements%20WHERE%20time%20>%20now()%20-%201d%20GROUP BY%20"name"`
         )
@@ -38,7 +38,7 @@ function Rooms() {
 
                 return roomDataResponse;
             })
-    );
+    });
 
     useEffect(() => {
         const pullToRefresh = PullToRefresh.init({

@@ -1,5 +1,5 @@
 # build environment
-FROM node:20.18.0-alpine AS build
+FROM node:24-alpine AS build
 ARG DB_HOST
 ARG LOCATION_ELEVATION
 ARG LOCATION_LATITUDE
